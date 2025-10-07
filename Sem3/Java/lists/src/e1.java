@@ -40,7 +40,7 @@ class RokUrodzenia {
 
         String rokRzymski = rzymska(rok);
         String chinskiZnakZodiaku=chinskiZnak(rok);
-        System.out.print("Imię: "+ imie + "\n" + "Rok rzymski: " + rokRzymski + "\n" + "Chiński znak zodiaku: " + chinskiZnakZodiaku);
+        System.out.print("Cześć "+ imie + "!\n" + "Twój rzymski rok urodzenia: " + rokRzymski + "\n" + "Twój chiński znak zodiaku: " + chinskiZnakZodiaku);
     }
     public static String rzymska(int rok)
     {
