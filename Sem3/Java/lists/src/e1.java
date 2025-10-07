@@ -21,20 +21,22 @@ class RokUrodzenia {
         int rok;
         System.err.print("Podaj imię: ");
         String imie = sc.nextLine();
-        while(true) {
+
             System.err.print("Wprowadź rok urodzenia: ");
 
             String rokUrodzenia = sc.nextLine();
-
-            rok = Integer.parseInt(rokUrodzenia);
-
+            try {
+                rok = Integer.parseInt(rokUrodzenia);
+            }
+            catch(NumberFormatException e)
+            {
+                throw new IllegalArgumentException("Podano nieprawidłową wartość");
+            }
             if (rok < 0 || rok > 4000)
             {
-                System.err.print("Rok musi znajdować sie w przedziale 0 do 4000\n");
+                throw new IllegalArgumentException("rok " + rok + " spoza zakresu");
             }
-            else
-                break;
-        }
+
 
         String rokRzymski = rzymska(rok);
         String chinskiZnakZodiaku=chinskiZnak(rok);
