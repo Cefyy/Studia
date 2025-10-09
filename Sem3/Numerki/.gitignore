@@ -1,0 +1,59 @@
+# .gitignore dla folderu Numerki
+# Ignoruj pliki wynikowe kompilacji i tymczasowe
+
+# Binaries
+*.exe
+*.out
+*.app
+
+# Object and library files
+*.o
+*.obj
+*.so
+*.dll
+*.a
+*.lib
+
+# Build directories
+build/
+bin/
+Debug/
+Release/
+cmake-build-*/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile.user
+
+# Editor/IDE
+.vscode/
+*.code-workspace
+.idea/
+*.suo
+*.user
+*.ncb
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Java
+*.class
+
+# Misc temporary files
+*~
+*.swp
+
+# Lokalnie wygenerowane pliki z tego repozytorium
+z3.exe
+
+# Koniec
