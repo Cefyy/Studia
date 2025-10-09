@@ -17,7 +17,7 @@ int main()
     {
         cout <<setprecision(40) << "Wartosci dla i = " << i << " " <<"double: " <<fd(pow(10,-i)) << " single: "<< ff(float(pow(10,-i))) << endl;
     }
-    for(double i=11;i<=20;i++) // dlatego odpowiedz jest niepoprawna,bo wg komputera cos(5*10^-11) jest równy 1 wiec 1-cos(5x)=0 co jest nieprawdą
+    for(double i=11;i<=20;i++) // dlatego odpowiedz jest niepoprawna,bo wg komputera cos(5*10^-11) jest równy 1,a tylko dla 0 cos jest równy 1 w tym przedziale wiec 1-cos(5x)=0 co jest nieprawdą
     {
         cout << cos(5*pow(10,-i)) << endl;
     }
