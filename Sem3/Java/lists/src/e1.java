@@ -14,7 +14,7 @@ class RokUrodzenia {
             1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1
     };
     private static final String[] chinskie = {
-            "Szczur","Wół","Tygrys","Królik","Smok","Wąż","Koń","Owca","Małpa","Kogut","Pies","Świnia"
+            "Szczur","Bawół","Tygrys","Królik","Smok","Wąż","Koń","Owca","Małpa","Kogut","Pies","Świnia"
     };
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -68,6 +68,23 @@ class RokUrodzenia {
     }
     public static String chinskiZnak(int rok)
     {
-        return chinskie[(rok-4)%12];
+
+        String znak =switch(rok%12)
+        {
+            case 0 -> chinskie[0];
+            case 1 -> chinskie[1];
+            case 2 -> chinskie[2];
+            case 3 -> chinskie[3];
+            case 4 -> chinskie[4];
+            case 5 -> chinskie[5];
+            case 6 -> chinskie[6];
+            case 7 -> chinskie[7];
+            case 8 -> chinskie[8];
+            case 9 -> chinskie[9];
+            case 10 -> chinskie[10];
+            case 11 -> chinskie[11];
+            default -> "";
+        };
+        return znak;
     }
 }
