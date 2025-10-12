@@ -1,9 +1,10 @@
 #Załóżmy kwadrat 400x400 i wpisane koło o środku w punkcie (0,0)
 import random
 import math
+
 def pi():
     epsilon = 1e-6
-    tries = 100000
+    tries = 10000
     radius= 200
     ltwo=0
     cltwt=0
@@ -18,5 +19,6 @@ def pi():
         tries-=1
         our_pi = (4*ltwo)/cltwt
         print(our_pi)
+        
         
 pi()

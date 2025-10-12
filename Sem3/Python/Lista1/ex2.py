@@ -1,6 +1,3 @@
-
-
-
 def is_palindrom(text):
     nowy_tekst = ""
     for char in text:
