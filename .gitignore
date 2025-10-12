@@ -1,0 +1,13 @@
+# Ignore all XML files
+*.xml
+
+# Ignore all JSON files
+*.json
+
+# Ignore all IML files (IntelliJ IDEA module files)
+*.iml
+
+# If you want to keep some specific files, you can add exceptions like:
+# !package.json
+# !tsconfig.json
+# !important-config.json
