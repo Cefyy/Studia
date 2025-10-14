@@ -25,4 +25,4 @@ def uprosc_zdanie(tekst: str, dl_slowa: int, liczba_slow: int) -> None:
 
 if __name__ == '__main__':
     url = "https://wolnelektury.pl/media/book/txt/pan-tadeusz.txt"
-    uprosc_zdanie(scrape_txt(url),15,150)
+    uprosc_zdanie(scrape_txt(url),3,150)
