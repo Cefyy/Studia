@@ -7,21 +7,16 @@ int main()
 {
     double suma=1.0;
     double krok=1.0;
-    double sign = 1.0;
 
-    double x;
+
+    double x=M_PI/3;
     int k=0;
-    cin >> x;
 
     if(x < 0)
     {
         x*=-1.0;
     }
-    if(x > M_PI_2)
-    {
-        x=M_PI-x;
-        sign=-1.0;
-    }
+
 
     while(fabs(krok)>1e-16)
     {
@@ -29,6 +24,5 @@ int main()
         krok=krok = -krok * (x*x) / ((2.0*k)*(2.0*k - 1.0));
         suma+=krok;
     }
-    suma*=sign;
-    cout << setprecision(40) << fabs(suma-sign*cos(x));
+    cout << setprecision(40) << "Moje Pi: " << suma << endl << "Biblioteczne Pi: " << cos(x);
 }

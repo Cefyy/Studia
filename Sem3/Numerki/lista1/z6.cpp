@@ -21,5 +21,5 @@ int main()
             sumaf-=float(4.0/(2.0*i+1.0));
         }
     }
-    cout << setprecision(18) <<"roznica dla arytmetyki podwojnej: " << M_PI-sumad << endl << "roznica dla arytmetyki pojedynczej: " << M_PI-sumaf;
+    cout << setprecision(18) <<"wynik dla arytmetyki podwojnej: " << sumad << endl <<"wynik dla arytmetyki pojedynczej: " << sumaf;
 }
