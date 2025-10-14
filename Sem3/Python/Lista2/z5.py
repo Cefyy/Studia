@@ -5,13 +5,11 @@ import requests
 try:
     sys.stdout.reconfigure(encoding='utf-8')
 except AttributeError:
-    # Python < 3.7
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def scrape_txt(url):
     response = requests.get(url)
-    response.raise_for_status()
     response.encoding= 'utf-8'
     return response.text
 
@@ -46,12 +44,17 @@ def dekompresja(tekst_skompresowany):
             
 if __name__ == '__main__':
     url = "https://wolnelektury.pl/media/book/txt/treny-tren-viii.txt"
+    #url2= "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt"
     compressedTren=kompresja(scrape_txt(url))
     decompressedTren=dekompresja(compressedTren)
     compressed = kompresja("aaab! bbbbccd, dddd!")
     decompressed = dekompresja(compressed)
+    #compressedEng=kompresja(scrape_txt(url2))
+    #decompressedEng=dekompresja(compressedEng)
     print(compressedTren)
     print(decompressedTren)
     print(compressed)
     print(decompressed)
+    #print(compressedEng)
+    #print(decompressedEng)
 
