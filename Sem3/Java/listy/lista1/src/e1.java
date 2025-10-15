@@ -6,7 +6,7 @@
 //switchcase(Done)
 
 import java.util.Scanner;
-class RokUrodzenia {
+class e1 {
     private static final String[] rzymskie = {
             "M", "CM", "D", "CD", "C","XC", "L", "XL", "X", "IX", "V", "IV", "I"
     };
@@ -19,10 +19,11 @@ class RokUrodzenia {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int rok;
-        System.err.print("Podaj imię: ");
-        String imie = sc.nextLine().trim();
+        try {
+            System.out.print("Podaj imię: ");
+            String imie = sc.nextLine().trim();
 
-            System.err.print("Wprowadź rok urodzenia: ");
+            System.out.print("Wprowadź rok urodzenia: ");
 
             String rokUrodzenia = sc.nextLine().trim();
             try {
@@ -37,10 +38,12 @@ class RokUrodzenia {
                 throw new IllegalArgumentException("rok " + rok + " spoza zakresu");
             }
 
-
-        String rokRzymski = rzymska(rok);
-        String chinskiZnakZodiaku=chinskiZnak(rok);
-        System.out.print("Cześć "+ imie + "!\n" + "Twój rzymski rok urodzenia: " + rokRzymski + "\n" + "Twój chiński znak zodiaku: " + chinskiZnakZodiaku);
+            String rokRzymski = rzymska(rok);
+            String chinskiZnakZodiaku=chinskiZnak(rok);
+            System.out.print("Cześć "+ imie + "!\n" + "Twój rzymski rok urodzenia: " + rokRzymski + "\n" + "Twój chiński znak zodiaku: " + chinskiZnakZodiaku);
+        } finally {
+            sc.close(); // Close the Scanner to prevent resource leak
+        }
     }
     public static String rzymska(int rok)
     {
