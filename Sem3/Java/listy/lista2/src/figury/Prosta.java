@@ -43,5 +43,10 @@ public class Prosta {
         double y = Wy/W;
         return new Punkt(x,y);
     }
+    
+    @Override
+    public String toString() {
+        return "Prosta: " + a + "x + " + b + "y + " + c + " = 0";
+    }
 
 }

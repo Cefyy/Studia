@@ -14,7 +14,25 @@ public class Odcinek {
         this.p2 = p2;
     }
 
+    public void przesun(Wektor w)
+    {
+        this.p1.przesun(w);
+        this.p2.przesun(w);
+    }
+    public void obroc(Punkt p, double kat)
+    {
+        p1.obroc(p, kat);
+        p2.obroc(p, kat);
+    }
+    public void odbij(Prosta p)
+    {
+        p1.odbij(p);
+        p2.odbij(p);
+    }
     
-
+    @Override
+    public String toString() {
+        return "Odcinek[" + p1 + " -> " + p2 + "]";
+    }
 
 }

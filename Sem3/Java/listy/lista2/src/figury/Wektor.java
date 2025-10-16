@@ -15,4 +15,9 @@ public class Wektor {
     {
         return new Wektor(w1.dx+w2.dx,w1.dy+w2.dy);
     }
+    
+    @Override
+    public String toString() {
+        return "Wektor(" + dx + ", " + dy + ")";
+    }
 }

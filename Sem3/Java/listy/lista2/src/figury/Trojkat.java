@@ -22,7 +22,24 @@ public class Trojkat {
         this.p3=p3;
     }
 
-
+    public void przesun(Wektor w)
+    {
+        this.p1.przesun(w);
+        this.p2.przesun(w);
+        this.p3.przesun(w);
+    }
+    public void obroc(Punkt p, double kat)
+    {
+        p1.obroc(p, kat);
+        p2.obroc(p, kat);
+        p3.obroc(p, kat);
+    }
+    public void odbij(Prosta p)
+    {
+        p1.odbij(p);
+        p2.odbij(p);
+        p3.odbij(p);
+    }
 
     private boolean saWspoliniowe(Punkt p1,Punkt p2,Punkt p3)
     {
@@ -31,4 +48,10 @@ public class Trojkat {
 
         return (Math.abs(wyznacznik) < 1e-10);
     }
+    
+    @Override
+    public String toString() {
+        return "Trojkat[" + p1 + ", " + p2 + ", " + p3 + "]";
+    }
+
 }
