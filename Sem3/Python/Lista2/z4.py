@@ -1,12 +1,7 @@
 import random
-import sys
 import requests
 
-try:
-    sys.stdout.reconfigure(encoding='utf-8')
-except AttributeError:
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
     
 def scrape_txt(url):
@@ -30,4 +25,8 @@ def uprosc_zdanie(tekst: str, dl_slowa: int, liczba_slow: int) -> None:
 
 if __name__ == '__main__':
     url = "https://wolnelektury.pl/media/book/txt/pan-tadeusz.txt"
+    tekst = "Podział peryklinalny inicjałów wrzecionowatych \
+kambium charakteryzuje się ścianą podziałową inicjowaną \
+w płaszczyźnie maksymalnej."
     uprosc_zdanie(scrape_txt(url),5,750)
+    uprosc_zdanie(tekst,10,5)

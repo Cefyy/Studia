@@ -1,12 +1,6 @@
-import sys
+
 import requests
 
-
-try:
-    sys.stdout.reconfigure(encoding='utf-8')
-except AttributeError:
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 def scrape_txt(url):
     response = requests.get(url)
@@ -31,9 +25,6 @@ def kompresja(tekst : str):
     return wynik
                     
             
-
-
-
 def dekompresja(tekst_skompresowany):
     decoded=""
     for krotka in tekst_skompresowany:
