@@ -1,6 +1,3 @@
-
-
-
 def wybory(wyniki_wyborow,ilosc_mandatow):
     calkowite_glosy=sum(glosy for _,glosy in wyniki_wyborow)
     partie_powyzej = [(partie,glosy) for (partie,glosy) in wyniki_wyborow if glosy/calkowite_glosy >=0.05]  

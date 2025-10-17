@@ -6,7 +6,6 @@ import requests
     
 def scrape_txt(url):
     response = requests.get(url)
-    response.raise_for_status()
     response.encoding= 'utf-8'
     return response.text
 def uprosc_zdanie(tekst: str, dl_slowa: int, liczba_slow: int) -> None:
@@ -28,5 +27,5 @@ if __name__ == '__main__':
     tekst = "Podział peryklinalny inicjałów wrzecionowatych \
 kambium charakteryzuje się ścianą podziałową inicjowaną \
 w płaszczyźnie maksymalnej."
-    uprosc_zdanie(scrape_txt(url),5,750)
+    uprosc_zdanie(scrape_txt(url),10,50)
     uprosc_zdanie(tekst,10,5)

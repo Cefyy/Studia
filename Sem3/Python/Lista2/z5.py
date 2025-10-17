@@ -34,16 +34,16 @@ def dekompresja(tekst_skompresowany):
     return decoded
             
 if __name__ == '__main__':
-    url = "https://wolnelektury.pl/media/book/txt/treny-tren-viii.txt"
+    #url = "https://wolnelektury.pl/media/book/txt/treny-tren-viii.txt"
     #url2= "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt"
-    compressedTren=kompresja(scrape_txt(url))
-    decompressedTren=dekompresja(compressedTren)
+    #compressedTren=kompresja(scrape_txt(url))
+   # decompressedTren=dekompresja(compressedTren)
     compressed = kompresja("aaab! bbbbccd, dddd!")
     decompressed = dekompresja(compressed)
     #compressedEng=kompresja(scrape_txt(url2))
     #decompressedEng=dekompresja(compressedEng)
-    print(compressedTren)
-    print(decompressedTren)
+    #print(compressedTren)
+    #print(decompressedTren)
     print(compressed)
     print(decompressed)
     #print(compressedEng)
