@@ -1,4 +1,5 @@
-Uzyto kodu z poprzedniej rakiety Ariane 4, ale nowa rakieta miała wieksza predkosc poziomą. Przez co obliczona
-wartosc była nienaturalnie duza. Kod działał przez pierwsze 40 sekund
+Uzyto kodu z poprzedniej rakiety Ariane 4, ale nowa rakieta miała wieksza predkosc poziomą.
+Na co kod nie był przygotowany
+Kod działał przez pierwsze 40 sekund
 wartosci przekonwertowały sie na 16 bitowy integer z 64 bitowej liczby zmiennoprzecinkowej, doszło do
 przepełnienia i bledu systemu. Rakieta zmieniła tor lotu po 37 sekundach, a pozniej dokonała samodestrukcji z tego powodu

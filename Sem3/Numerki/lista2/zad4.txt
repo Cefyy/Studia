@@ -1,2 +1,4 @@
-zmieniono ms w s, mnozac przez 1/10, system zaokraglal do 24 bitów przy 100 godzinach aktywnosci dalo roznice 0,34 s.
-Rakieta poruszała sie z predkoscia ok. 1700 m/s wiec przeleciała ponad poł kilometra wiecej i nie została zestrzelona
+zmieniono ms w s, mnozac przez 1/10, 
+system zaokraglal do 24 bitów przy 100 godzinach aktywnosci dalo roznice 0,34 s.
+Rakieta poruszała sie z predkoscia ok. 1700 m/s wiec przeleciała ponad poł kilometra wiecej i 
+nie została zestrzelona

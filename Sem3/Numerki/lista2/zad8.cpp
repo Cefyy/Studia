@@ -5,11 +5,11 @@ using namespace std;
 
 double f_improv(double x)
 {
-    return (162*((25.0/2.0)-((625*x*x)/24.0) + (15625*x*x*x*x)/720.0));
+    return (162.0*((25.0/2.0)-((625.0*x*x)/24.0) + (15625.0*x*x*x*x)/720.0));
 }
 double f(double x)
 {
-    return ((162*(1-cos(5*x)))/x*x);
+    return ((162.0*(1.0-cos(5.0*x)))/x*x);
 }
 int main()
 {
