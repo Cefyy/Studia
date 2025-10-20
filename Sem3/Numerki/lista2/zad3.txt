@@ -1,0 +1,8 @@
+Najwiekszy mozliwy wykładnik w double to 2046 - 1023 (bias) czyli 1023
+mamy 52 bity na mantysie
+jesli zmienimy ostatni bit mantysy z 1 na 0 to z usuwamy z sumy 1/(2^(52))*2^wykladnik
+wiec 2^1023-52 = 2^971
+
+2^971 to ok. 10^292
+odleglosc miedzy ziemią a słońcem to 1,5 * 10^8
+wiec jest to 10^(284) razy wiecej. sporo
