@@ -25,7 +25,7 @@ public class Prosta {
     }
     public static boolean czyProstopadle(Prosta m,Prosta n)
     {
-        return Math.abs(m.a*n.a+m.b*n.b)<1e-10;
+        return Math.abs(m.a*n.a+m.b*n.b) < 1e-10;
     }
     public static Punkt przeciecie(Prosta m,Prosta n)
     {
