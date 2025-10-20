@@ -3,11 +3,11 @@ using namespace std;
 
 double f1(double x)
 {
-    return (sqrt(12150*pow(x,15)+9)-3)/pow(x,15);
+    return (sqrt(12150.0*pow(x,15.0)+9.0)-3.0)/pow(x,15.0);
 }
 double f2(double x)
 {
-    return (12150/(sqrt(12150*pow(x,15)+9)+3));
+    return (12150.0/(sqrt(12150.0*pow(x,15.0)+9.0)+3.0));
 }
 int main()
 {
