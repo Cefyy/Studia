@@ -3,7 +3,7 @@ W arytmetyce pojedynczej zapisujemy na 32 bitach:
 1 bit to znak (0 - liczba dodatnia, 1 - ujemna)
 następne 8 bitów to cecha, przy czym ceche koduje sie z nadmiarem wynoszącym dla float 127,
 tj. np. dla cechy = 01111111 nie liczmy 2^127 ale 2^(127-bias) czy tak naprawde 2^0
-Na następnych 23 bitach mamy mantysę, nie 24 bo pomijamy bit wiodący który jest zazwyczaj ustawiony na 1,
+Na następnych 23 bitach mamy mantysę, a 1,
 wiec mantysa ma postać 1.mantysa
 Precyzja to 7-8 miejsc po przecinku, a zakres to ok. ±1,18·10^−38 do około ±3,4·10^38
 
@@ -13,3 +13,4 @@ W double precyzja to 16 miejsc po przecinku a zakres ±2,2·10^−308 do około 
 
 ogólny wzór to 
     x=(−1)^s *(1.mantysa)(w systemie dwójkowym) ​*2^(c−bias)
+subnormalne - najmneijszy mozliwy wykladnik i mantysa zaczyna sie 0. a nie 1.
