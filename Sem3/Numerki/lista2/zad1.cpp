@@ -11,7 +11,7 @@ int main()
             {
                 for (int e5 = 0; e5 <= 1; e5++)
                 {
-                    double m = 0.5 + e2/4.0 + e3/8.0 + e4/16.0 + e5/32.0;
+                    double m = e2/4.0 + e3/8.0 + e4/16.0 + e5/32.0;
                     for(int c = 0;c<=1;++c)
                     {
                         double cecha = pow(2,c);

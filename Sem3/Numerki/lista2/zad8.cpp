@@ -9,7 +9,7 @@ double f_improv(double x)
 }
 double f(double x)
 {
-    return ((162.0*(1.0-cos(5.0*x)))/x*x);
+    return (162.0*((1.0-cos(5.0*x)))/(x*x));
 }
 int main()
 {
