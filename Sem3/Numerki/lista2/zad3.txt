@@ -1,4 +1,4 @@
-Najwiekszy mozliwy wykładnik w double to 2046 - 1023 (bias) czyli 1023
+Najwiekszy mozliwy wykładnik w double to 2046 - 1023 (bias) czyli 1023 (1111111110)
 mamy 52 bity na mantysie
 jesli zmienimy ostatni bit mantysy z 1 na 0 to z usuwamy z sumy 1/(2^(52))*2^wykladnik
 wiec 2^1023-52 = 2^971
