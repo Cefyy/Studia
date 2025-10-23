@@ -9,14 +9,12 @@ def pierwsze_imperatywne(n):
     return pierwsze
 
 def pierwsze_funkcyjna(n):
-    return [i for i in range(2, n+1) if czyPierwsza(i)]
-
-def pierwsze_skladana(n):
     return list(filter(lambda x: czyPierwsza(x), range(2, n+1)))
 
+def pierwsze_skladana(n):
+    return [i for i in range(2, n+1) if czyPierwsza(i)]
+
 def czyPierwsza(n):
-    if n < 2:
-        return False
     if n == 2:
         return True
     if n%2 == 0:
