@@ -23,6 +23,7 @@ console.log(car[obiekt] + "\n") // konwersja uzywajac .toString() obiekt -> [obj
 
 //użycie argumentów innego typu niż number dla operatora [] dostępu do tablicy.
 
+
 const tab = [1,2,3,4]
 
 console.log(tab['1']) // konwersja na numer '1' -> 1

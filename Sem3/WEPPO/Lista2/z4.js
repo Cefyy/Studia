@@ -10,6 +10,9 @@ console.log(typeof true)
 console.log(typeof [])
 
 
+
+
+
 console.log([] instanceof Array)
 console.log([] instanceof Object)
 

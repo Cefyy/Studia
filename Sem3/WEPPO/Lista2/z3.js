@@ -5,6 +5,7 @@ console.log("![]+[] =  " + ![]+[]) // ![] -> negacja truth -> false, false + [] 
 console.log("+[] = " + Number(+[])) // +[] pusty string, jako number daje 0 wiec false[0] = f
 
 
+
 console.log("+!+[] =  "+ +!+[]) // + konwertuje na liczbe []-> 0 !neguje wartosc wiec mamy konwersje na liczbe(!+[]) a [] przekonwertowane daje 0 wiec !0 = 1
 
 
