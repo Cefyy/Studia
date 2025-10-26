@@ -26,13 +26,12 @@ def czyPierwsza(n):
 
 # Pomiary czasu
 def zmierz_czas(func, n, repeats=100):
-    """Mierzy czas wykonania funkcji używając timeit"""
-    return timeit.timeit(lambda: func(n), number=repeats) / repeats
+    return timeit.timeit(lambda: func(n),number=100)/repeats
 
 print(pierwsze_imperatywne(1000))
 print (pierwsze_imperatywne(1000) == pierwsze_skladana(1000) == pierwsze_funkcyjna(1000))
-# Wyświetl tabelkę z wynikami
-print("n\tskladana\timperatywna\tfunkcyjna")
+
+print("n\t\tskladana\timperatywna\t\tfunkcyjna")
 print("="*60)
 
 wartosci_n = [10, 20, 50, 100, 200, 500, 1000]
