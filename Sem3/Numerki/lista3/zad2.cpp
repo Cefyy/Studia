@@ -1,17 +1,16 @@
-#include <iostream>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
 
 void metoda_delta(double a, double b, double c) {
-    double delta = b * b - 4 * a * c;
-    double x1 = (-b - sqrt(delta)) / (2 * a);
-    double x2 = (-b + sqrt(delta)) / (2 * a);
+    double delta = b * b - 4.0 * a * c;
+    double x1 = (-b - sqrt(delta)) / (2.0* a);
+    double x2 = (-b + sqrt(delta)) / (2.0 * a);
     cout << x1 << " " << x2 << endl;
 }
 
 void metoda_viete(double a, double b, double c){
     double delta = b * b - 4 * a * c;
-    double x1 = (-b - sqrt(delta)) / (2 * a);
+    double x1 = (-b - sqrt(delta)) / (2.0 * a);
     double x2 = c / (a * x1);
     cout << x1 << " " << x2 << endl;
 }
