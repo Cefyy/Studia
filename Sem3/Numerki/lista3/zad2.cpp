@@ -10,8 +10,17 @@ void metoda_delta(double a, double b, double c) {
 
 void metoda_viete(double a, double b, double c){
     double delta = b * b - 4 * a * c;
-    double x1 = (-b - sqrt(delta)) / (2.0 * a);
-    double x2 = c / (a * x1);
+    double x1,x2;
+    if(b>=0)
+    {
+        x1 = (-b - sqrt(delta)) / (2.0 * a);
+        x2 = c / (a * x1);
+    }
+    else
+    {
+        x2 = (-b + sqrt(delta)) / (2.0 * a);
+        x1 = c / (a * x2);
+    }
     cout << x1 << " " << x2 << endl;
 }
 

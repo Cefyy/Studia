@@ -2,7 +2,7 @@
 console.log( (![]+[])[+[]]+(![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]] );
 
 console.log("![]+[] =  " + ![]+[]) // ![] -> negacja truth -> false, false + [] -> "false" + "" -> false
-console.log("+[] = " + Number(+[])) // +[] pusty string, jako number daje 0 wiec false[0] = f
+console.log("+[] = " + +[]) // +[] pusty string, jako number daje 0 wiec false[0] = f
 
 
 
