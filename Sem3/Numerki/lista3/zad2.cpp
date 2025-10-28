@@ -5,7 +5,7 @@ void metoda_delta(double a, double b, double c) {
     double delta = b * b - 4.0 * a * c;
     double x1 = (-b - sqrt(delta)) / (2.0* a);
     double x2 = (-b + sqrt(delta)) / (2.0 * a);
-    cout << x1 << " " << x2 << endl;
+    cout << "Metoda szkolna: " << fixed << setprecision(18)<< x1 << " " << x2 << endl;
 }
 
 void metoda_viete(double a, double b, double c){
@@ -21,7 +21,7 @@ void metoda_viete(double a, double b, double c){
         x2 = (-b + sqrt(delta)) / (2.0 * a);
         x1 = c / (a * x2);
     }
-    cout << x1 << " " << x2 << endl;
+    cout << "Metoda poprawiona: " << fixed <<  setprecision(18)<< x1 << " " << x2 << endl;
 }
 
 int main(){
