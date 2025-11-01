@@ -4,6 +4,9 @@ class Formula(ABC):
     @abstractmethod
     def oblicz(self,variables):
         pass
+    @abstractmethod
+    def uprosc(self):
+        pass
     def __add__(self,other):
         return Or(self,other)
     def __mul__(self,other):
@@ -30,6 +33,8 @@ class And(Formula):
         return self.left.get_variables() | self.right.get_variables()
     
     def uprosc(self):
+        self.left = self.left.uprosc()
+        self.right = self.right.uprosc()
         if isinstance(self.left,Stala) and not self.left.value:
             return Stala(False)
         if isinstance(self.right,Stala) and not self.right.value:
@@ -52,6 +57,8 @@ class Or(Formula):
     
     
     def uprosc(self):
+        self.left = self.left.uprosc()
+        self.right = self.right.uprosc()
         if isinstance(self.left,Stala) and not self.left.value:
             return self.right
         if isinstance(self.right,Stala) and not self.right.value:
@@ -76,6 +83,9 @@ class Zmienna(Formula):
     def get_variables(self):
         return {self.name}
     
+    def uprosc(self):
+        return self
+    
 class Not(Formula):
     def __init__(self,form):
         self.form = form
@@ -87,6 +97,10 @@ class Not(Formula):
     
     def get_variables(self):
         return self.form.get_variables()
+    
+    def uprosc(self):
+        return self
+
         
 class Stala(Formula):
     def __init__(self,value : bool):
@@ -97,6 +111,8 @@ class Stala(Formula):
         return "true" if self.value  else "false"
     def get_variables(self):
         return set()
+    def uprosc(self):
+        return self
         
           
 if __name__ == "__main__":
@@ -138,8 +154,7 @@ if __name__ == "__main__":
     print("Po uproszczeniu:", f5_simple)
     print("-" * 40)
     
-    print("Test 6: ¬x ∨ (y ∧ true)")
-    f6 = Or(Not(Zmienna("x")), And(Zmienna("y"), Stala(True)))
-    f6_simple = f6.uprosc()
-    print("Przed uproszczeniem:", f6)
-    print("Po uproszczeniu:", f6_simple)
+    f6 = f5 * f4 * f4
+    print(f6)
+    print(f6.uprosc())
+    
