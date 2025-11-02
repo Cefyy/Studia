@@ -18,7 +18,6 @@ function createIterator()
 }
 function* createGenerator(){
    var f1 = 0
-   yield f1
    var f2 = 1
     yield f2
    while(true)
