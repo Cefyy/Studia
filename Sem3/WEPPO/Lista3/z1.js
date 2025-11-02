@@ -1,3 +1,4 @@
+//dopisac czasy
 function fib_mem(n, mem) {
   mem[0] = 0;
   mem[1] = 1;
