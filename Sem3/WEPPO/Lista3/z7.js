@@ -6,9 +6,9 @@ function createIterator()
     return {
         next : function()
         {
-            const value = f2 + f1;
+            var value = f2;
             var temp = f2;
-            f2 = value;
+            f2 = f2 + f1;
             f1 = temp;
             const done = false
             return {
