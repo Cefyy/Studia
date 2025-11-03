@@ -31,34 +31,33 @@ function memoize(fn) {
 // Tworzenie memoizowanej wersji rekurencji
 var memofib2 = memoize(FibRec);
 
-console.log("=== POMIAR CZASU DLA FIB(41) ===\n");
+var memofib41 = memoize(FibRec);
+memofib41(41);
 
+console.time("fib_mem(41)");
+fib_mem(41, []);
+console.timeEnd("fib_mem(41)");
 
-console.log("1. fib_mem(41) - memoizacja iteracyjna:");
-console.time("fib_mem");
-var result1 = fib_mem(41, []);
-console.timeEnd("fib_mem");
-console.log("Wynik:", result1);
+console.time("memofib(41) cached");
+memofib41(41);
+console.timeEnd("memofib(41) cached");
+
+console.time("FibRec(41)");
+FibRec(41);
+console.timeEnd("FibRec(41)");
+
 console.log();
 
+console.time("fib_mem(40)");
+fib_mem(40, []);
+console.timeEnd("fib_mem(40)");
 
-console.log("2. memofib2(41):");
-console.time("memofib2");
-memofib2(41);
-var result2 = memofib2(41);
-console.timeEnd("memofib2");
-console.log("Wynik:", result2);
-console.log();
+console.time("FibRec(40)");
+FibRec(40);
+console.timeEnd("FibRec(40)");
 
-console.log("3. FibRec(41):");
-console.time("FibRec");
-var result3 = FibRec(41);
-console.timeEnd("FibRec");
-console.log("Wynik:", result3);
-console.log();
-
-
-console.log("=== PORÓWNANIE WYNIKÓW ===");
-console.log("Wszystkie wyniki równe?", result1 === result2 && result2 === result3);
-console.log();
+var memofib40 = memoize(FibRec);
+console.time("memofib(40)");
+memofib40(40);
+console.timeEnd("memofib(40)");
 
