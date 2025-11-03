@@ -12,9 +12,6 @@ double bisekcja(double a0, double b0) {
     for (int i = 0; i < 19; ++i) {
         m = 0.5 * (a + b);
 
-        // warunek stopu: szerokość przedziału mniejsza niż tolerancja
-
-        // wybór podprzedziału
         if (funkcja(a) * funkcja(m) <= 0)
             b = m;
         else
