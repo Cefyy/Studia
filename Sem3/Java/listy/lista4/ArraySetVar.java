@@ -30,13 +30,14 @@ public class ArraySetVar extends SetVar {
     
     @Override
     public double get(String k) {
-        for (int i = 0; i < size; i++) {
-            if (vars[i].key.equals(k)) {
-                return vars[i].get();
-            }
-        }
+    if (!search(k)) {
         throw new IllegalArgumentException("Variable cannot be found");
     }
+    for (int i = 0; i < size; i++) {
+        if (vars[i].key.equals(k)) return vars[i].get();
+    }
+    return Double.NaN;
+}
     
     @Override
     public boolean search(String k) {
