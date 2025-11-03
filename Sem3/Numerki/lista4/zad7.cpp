@@ -55,10 +55,9 @@ int main()
     double a1 = 4.0;
     double a2 = 50.0;
 
-    // √2 ≈ 1.4142
-    // √50 ≈ 7.0711
 
-    cout << "--- Wyniki dla a = 2.0 ---\n";
+
+    cout << "--- Wyniki dla a = 4.0 ---\n";
     sqrt_decomposed(a1, -1.5); 
     sqrt_decomposed(a1, 0.5);    
     sqrt_decomposed(a1, 2.0);    
