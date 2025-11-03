@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-void newton(double x0,double R)
+void newton(double x0,double a)
 {
     double eps = 1e-16;
     double xn = x0;
@@ -12,7 +12,7 @@ void newton(double x0,double R)
     int iteracje=0;
     while(true)
     {
-        alpha = xn*(2.0-xn*R);
+        alpha = (0.5*xn)*(3.0-xn*xn*a);
         iteracje++;
         if(fabs(xn-alpha)<eps)
         break;
@@ -25,14 +25,14 @@ void newton(double x0,double R)
 
 int main()
 {
-    double Rs[5]={0.5,2.0,10.0,123.456,1.0};
-    double x0[10]={1.0,0.5,0.1,0.05,0.05,0.09,0.005,0.008,0.1,0.001};
+    double As[5]={4.0,0.16,256.0,0.0001,1.0}; //1/2, 1/0.4=2.5 1/16=0.0625,1/0.01=100,1
+    double x0[10]={0.45,0.25,2.4,1.5,0.05,0.0125,95,20,0.95,0.25};
     for(int i=0;i<5;i++)
     {
         for(int j=0;j<2;j++)
         {
-            cout << "a: " <<left << setw(7) << Rs[i]  << " x0: " << left << setw(6) << x0[2*i+j] << " ";
-            newton(x0[2*i+j],Rs[i]);
+            cout << "a: " <<left << setw(6) << As[i]  << " x0: " << left << setw(6) << x0[2*i+j] << " ";
+            newton(x0[2*i+j],As[i]);
         }
     }
 }
