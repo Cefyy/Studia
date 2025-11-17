@@ -28,3 +28,22 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Java - pliki generowane ###
+# Skompilowane klasy
+*.class
+bin/
+
+# Pliki JAR
+*.jar
+
+# Dokumentacja Javadoc
+docs/
+
+# Pliki logów
+*.log
+*.log.*
+
+# Pliki tymczasowe
+*.tmp
+*.bak
