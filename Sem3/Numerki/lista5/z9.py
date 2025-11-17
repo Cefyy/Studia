@@ -25,7 +25,7 @@ def olver_method(f, f_prime, f_double_prime, x0, tol=1e-15, max_iter=1000):
     
     return iterations
 
-def calculate_convergence_order(iterations):
+def calculate_p(iterations):
     p_values = []
     n = len(iterations)
     
@@ -67,20 +67,20 @@ def f4_double_prime(x): return math.exp(x)
 
 # Test 1
 iterations1 = olver_method(f1, f1_prime, f1_double_prime, 1.5)
-p_values1 = calculate_convergence_order(iterations1)
+p_values1 = calculate_p(iterations1)
 print(f"p={p_values1[0]:.50f}")
 
 # Test 2
 iterations2 = olver_method(f2, f2_prime, f2_double_prime, 2.0)
-p_values2 = calculate_convergence_order(iterations2)
+p_values2 = calculate_p(iterations2)
 print(f"p={p_values2[0]:.50f}")
 
 # Test 3
 iterations3 = olver_method(f3, f3_prime, f3_double_prime, 2.0)
-p_values3 = calculate_convergence_order(iterations3)
+p_values3 = calculate_p(iterations3)
 print(f"p={p_values3[0]:.50f}")
 
 # Test 4
 iterations4 = olver_method(f4, f4_prime, f4_double_prime, 1.0)
-p_values4 = calculate_convergence_order(iterations4)
+p_values4 = calculate_p(iterations4)
 print(f"p={p_values4[0]:.50f}")
