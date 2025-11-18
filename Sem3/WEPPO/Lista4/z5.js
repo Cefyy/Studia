@@ -4,7 +4,6 @@ var Foo = (function() {
         console.log("Foo::Qux");
     }
     
-    // Konstruktor
     function Foo() {
     }
     
