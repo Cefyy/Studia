@@ -66,21 +66,25 @@ def f4_prime(x): return math.exp(x) + 1
 def f4_double_prime(x): return math.exp(x)
 
 # Test 1
+print("Test 1: f(x) = x² - 2")
 iterations1 = olver_method(f1, f1_prime, f1_double_prime, 1.5)
 p_values1 = calculate_p(iterations1)
-print(f"p={p_values1[0]:.50f}")
+print(f"p = {p_values1[0]:.50f}\n")
 
 # Test 2
+print("Test 2: f(x) = x³ - 2x - 5")
 iterations2 = olver_method(f2, f2_prime, f2_double_prime, 2.0)
 p_values2 = calculate_p(iterations2)
-print(f"p={p_values2[0]:.50f}")
+print(f"p = {p_values2[0]:.50f}\n")
 
 # Test 3
+print("Test 3: f(x) = sin(x) - x/2")
 iterations3 = olver_method(f3, f3_prime, f3_double_prime, 2.0)
 p_values3 = calculate_p(iterations3)
-print(f"p={p_values3[0]:.50f}")
+print(f"p = {p_values3[0]:.50f}\n")
 
 # Test 4
+print("Test 4: f(x) = eˣ + x - 2")
 iterations4 = olver_method(f4, f4_prime, f4_double_prime, 1.0)
 p_values4 = calculate_p(iterations4)
-print(f"p={p_values4[0]:.50f}")
+print(f"p = {p_values4[0]:.50f}")
