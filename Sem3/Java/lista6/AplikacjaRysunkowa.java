@@ -65,17 +65,15 @@ public class AplikacjaRysunkowa extends Frame
             public void keyPressed(KeyEvent e)
             {
                 int code = e.getKeyCode();
-                char key = e.getKeyChar();
-
                 if(code == KeyEvent.VK_BACK_SPACE)
                 {
                     canvas.clearAll();
                 }
-                else if(key == 'F' || key == 'f')
+                else if(code == KeyEvent.VK_F)
                 {
                     canvas.deleteFirst();
                 }
-                else if(key == 'B' || key == 'b' || key == 'L' || key == 'l')
+                else if(code == KeyEvent.VK_B || code == KeyEvent.VK_L)
                 {
                     canvas.deleteLast();
                 }
