@@ -21,14 +21,15 @@ public class SolitaireGame extends JFrame {
 
         File saveFile = new File("solitaire.ser");
         if (saveFile.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(saveFile))) {
-                model = (SolitaireModel) ois.readObject();
-                saveFile.delete();
-            } catch (Exception e) {
-                model = new SolitaireModel();
-            }
-        } else {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(saveFile))) {
+            model = (SolitaireModel) ois.readObject();
+        } catch (Exception e) {
             model = new SolitaireModel();
+        } finally {
+            saveFile.delete();
+        }
+        } else {
+        model = new SolitaireModel();
         }
 
 
