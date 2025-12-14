@@ -1,13 +1,126 @@
-# Ignore all XML files
-*.xml
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+*.egg
 
-# Ignore all JSON files
-*.json
-
-# Ignore all IML files (IntelliJ IDEA module files)
+# ==========================================
+# Java
+# ==========================================
+*.class
+*.jar
+*.war
+*.ear
+target/
+.idea/
 *.iml
+*.log
+.gradle/
+build/
+out/
 
-# If you want to keep some specific files, you can add exceptions like:
+# ==========================================
+# Node.js / JavaScript / TypeScript
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+dist/
+.cache/
+.next/
+.nuxt/
+*.tsbuildinfo
+
+# ==========================================
+# SSL Certificates & Keys
+# ==========================================
+*.pem
+*.key
+*.crt
+*.pfx
+*.p12
+*.csr
+*.der
+*.cert
+
+# ==========================================
+# IDE & Editors
+# ==========================================
+.vscode/
+.vs/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# OS Files
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# Environment & Config
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.env
+
+# ==========================================
+# Logs & Databases
+# ==========================================
+*.log
+*.sql
+*.sqlite
+*.db
+
+# ==========================================
+# Compiled / Generated Files
+# ==========================================
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+
+# ==========================================
+# Specific File Types (if needed)
+# ==========================================
+*.xml
+# !pom.xml  # Uncomment to keep Maven files
+# !web.xml
+
+# Uncomment below to keep important JSON files
+# *.json
 # !package.json
 # !tsconfig.json
-# !important-config.json

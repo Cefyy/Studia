@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Formularz zgłoszenia</h1>
+    
+    <% if (error) { %>
+        <p style="color:red; font-weight:bold;"><%= error %></p>
+    <% } %>
+
+    <form action="/submit" method="POST">
+        <label>Imię: <input type="text" name="firstname" value="<%= formData.firstname || '' %>"></label><br>
+        <label>Nazwisko: <input type="text" name="lastname" value="<%= formData.lastname || '' %>"></label><br>
+        <label>Zajęcia: <input type="text" name="course" value="<%= formData.course || '' %>"></label><br>
+        
+        <h3>Punkty za zadania (1-10):</h3>
+        <% for(let i=1; i<=10; i++) { %>
+            <label>Zad <%= i %>: 
+                <input type="number" name="task<%= i %>" min="0" value="<%= formData['task'+i] || '' %>">
+            </label><br>
+        <% } %>
+        
+        <br>
+        <button type="submit">Wyślij zgłoszenie</button>
+    </form>
+</body>
+</html>
