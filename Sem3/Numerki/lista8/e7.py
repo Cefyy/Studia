@@ -120,6 +120,8 @@ sy_vals = splines.evaluate_spline(Y_data, My, u)
 # Rysujemy obrazek
 plt.figure(figsize=(8, 8))
 plt.plot(sx_vals, sy_vals, "b-", linewidth=2, label="NIFS3 Parametryczna")
-plt.axis("equal")  # Ważne, żeby zachować proporcje rysunku!
+plt.plot(X_data,Y_data,"ro",markersize=2,label="Wezly")
+plt.legend()
+plt.axis("equal")
 plt.grid(True)
 plt.show()
