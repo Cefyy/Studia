@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wydruk</title>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Pasek zgłoszenia zadań</h1>
+    
+    <table>
+        <tr>
+            <th>Student</th>
+            <td><%= data.firstname %> <%= data.lastname %></td>
+        </tr>
+        <tr>
+            <th>Przedmiot</th>
+            <td><%= data.course %></td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <% for(let i=1; i<=10; i++) { %>
+                <th>Z<%= i %></th>
+            <% } %>
+            <th>Suma</th>
+        </tr>
+        <tr>
+            <% let sum = 0; %>
+            <% data.tasks.forEach(score => { sum += score; %>
+                <td><%= score %></td>
+            <% }) %>
+            <td><strong><%= sum %></strong></td>
+        </tr>
+    </table>
+    
+    <br>
+    <a href="/">Wróć</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "studia",
+  "version": "1.0.0",
+  "description": "* Advanced Python Course\r * Numerical Analysis\r * Java Course\r * Discrete Mathematics\r * WEPPO - Selected Topics in Software Design Practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cefyy/Studia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cefyy/Studia/issues"
+  },
+  "homepage": "https://github.com/Cefyy/Studia#readme",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-session": "^1.18.2"
+  }
+}
