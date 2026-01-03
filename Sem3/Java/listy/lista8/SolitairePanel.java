@@ -9,7 +9,6 @@ public class SolitairePanel extends JPanel {
     private Color boardColor = new Color(222, 184, 135);
     private Color pegColor = new Color(0, 0, 139);
     private boolean filledPegs = true; 
-
     public SolitairePanel(SolitaireModel model, SolitaireGame controller) {
         this.model = model;
         this.controller = controller;
