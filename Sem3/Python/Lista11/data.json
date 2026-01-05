@@ -1,0 +1,129 @@
+[
+  {
+    "title": "F1",
+    "year": "2025",
+    "director": "Kosinski",
+    "producers": [
+      "Apple Studios",
+      "Jerry Bruckheimer Films",
+      "Plan B Entertainment",
+      "Monolith Pictures",
+      "Dawn Apollo Films"
+    ],
+    "operator": "Miranda"
+  },
+  {
+    "title": "Bugonia",
+    "director": "Lanthimos",
+    "producers": [
+      "Element Pictures",
+      "Fruit Tree",
+      "Square Peg",
+      "CJ ENM"
+    ],
+    "operator": "Ryan"
+  },
+  {
+    "title": "One Battle After Another",
+    "year": 2025,
+    "director": "Anderson",
+    "producers": [
+      "Ghoulardi Film Company",
+      "Warner Bros. Pictures"
+    ],
+    "operator": "Bauman"
+  },
+  {
+    "title": "Marty Supreme",
+    "year": 2025,
+    "director": "Safdie",
+    "producers": [
+      "A24",
+      "Elara Pictures"
+    ],
+    "operator": "Khondji"
+  },
+  {
+    "title": "There Will Be Blood",
+    "year": 2007,
+    "director": "Anderson",
+    "producers": [
+      "Ghoulardi Film Company",
+      "Paramount Vantage",
+      "Miramax"
+    ],
+    "operator": "Elswit"
+  },
+  {
+    "title": "The Social Network",
+    "year": 2010,
+    "director": "Fincher",
+    "producers": [
+      "Relativity Media",
+      "Scott Rudin Productions",
+      "Michael De Luca Productions",
+      "Trigger Street Productions"
+    ],
+    "operator": "Cronenweth"
+  },
+  {
+    "title": "Dallas Buyers Club",
+    "year": 2013,
+    "director": "Vallée",
+    "producers": [
+      "Truth Entertainment",
+      "Voltage Pictures"
+    ],
+    "operator": "Bélanger"
+  },
+  {
+    "title": "Parasite",
+    "year": 2018,
+    "director": "Bong",
+    "producers": [
+      "Barunson E&A"
+    ],
+    "operator": "Hong"
+  },
+  {
+    "title": "Everything Everywhere All at Once",
+    "year": 2024,
+    "director": "Kwan",
+    "producers": [
+      "IAC Films",
+      "Gozie AGBO",
+      "Year of the Rat",
+      "Ley Line Entertainment"
+    ],
+    "operator": "Seiple"
+  },
+  {
+    "title": "The Odyssey",
+    "year": "2026",
+    "director": "Nolan",
+    "producers": [
+      "Syncopy",
+      "Universal Pictures"
+    ],
+    "operator": "van Hoytema"
+  },
+  {
+    "title": "Civil War",
+    "director": "Garland",
+    "producers": [
+      "DNA Films",
+      "A24",
+      "IPR.VC"
+    ],
+    "operator": "Hardy"
+  },
+  {
+    "title": "Oppenheimer",
+    "director": "Nolan",
+    "producers": [
+      "Syncopy",
+      "Atlas Entertainment"
+    ],
+    "operator": "van Hoytema"
+  }
+]
