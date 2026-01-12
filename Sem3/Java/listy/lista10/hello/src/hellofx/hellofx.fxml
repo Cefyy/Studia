@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane fitToWidth="true" prefHeight="700.0" prefWidth="600.0" 
+            stylesheets="@styles.css"
+            xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="hellofx.Controller">
+    <content>
+        <VBox styleClass="main-container">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+            <children>
+                <Label fx:id="titleLabel" 
+                       text="Kalkulator Systemów Liczbowych" 
+                       styleClass="title"/>
+                <Label text="Wpisz liczbę w dowolnym systemie i naciśnij Enter" 
+                       styleClass="subtitle"/>
+                <VBox fx:id="container" styleClass="fields-container"/>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
