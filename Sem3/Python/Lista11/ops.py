@@ -1,15 +1,15 @@
 import requests
 import models
-from sqlalchemy import or_  # Upewnij się, że masz ten import
+from sqlalchemy import or_  
 
 
 class LocalRepository:
-    """Bezpośredni dostęp do bazy danych (SQLAlchemy)"""
+    
 
     def __init__(self):
         models.init_db()
 
-    def list_movies(self, search_query=None):  # Dodano argument
+    def list_movies(self, search_query=None):  
         session = models.SessionLocal()
         query = session.query(models.Film)
 
@@ -101,12 +101,12 @@ class LocalRepository:
 
 
 class RemoteRepository:
-    """Dostęp przez API (REST/JSON)"""
+    
 
     def __init__(self, url="http://127.0.0.1:8000"):
         self.url = url
 
-    def list_movies(self, search_query=None):  # Dodano argument
+    def list_movies(self, search_query=None):  
         try:
             params = {}
             if search_query:

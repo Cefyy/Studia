@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 api_url = "https://api.nbp.pl/api/exchangerates/"
 
 def process(df):
+    print(df)
     if df.empty:
         return pd.Series(dtype="float64")
     df["effectiveDate"] = pd.to_datetime(df["effectiveDate"])

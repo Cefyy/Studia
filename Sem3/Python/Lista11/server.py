@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
-from sqlalchemy import or_  # Dodaj ten import na górze jeśli go nie ma
+from sqlalchemy import or_
 import models
 
 app = FastAPI()
@@ -26,15 +26,13 @@ class FilmResponse(BaseModel):
     producers: List[str]
 
 
-# --- READ ---
 @app.get("/films", response_model=List[FilmResponse])
-def get_films(search: Optional[str] = None):  # Dodano parametr search
+def get_films(search: Optional[str] = None): 
     session = models.SessionLocal()
     query = session.query(models.Film)
 
     if search:
-        # Filtrowanie: Tytuł LUB Reżyser (nazwisko) zawiera frazę
-        # ilike jest case-insensitive (w SQLite like też zazwyczaj jest)
+        
         search_pattern = f"%{search}%"
         query = query.join(models.Director).filter(
             or_(
@@ -60,7 +58,7 @@ def get_films(search: Optional[str] = None):  # Dodano parametr search
     return results
 
 
-# --- CREATE ---
+
 @app.post("/films")
 def create_film(film: FilmCreate):
     session = models.SessionLocal()
@@ -75,7 +73,7 @@ def create_film(film: FilmCreate):
         session.close()
 
 
-# --- DELETE (Dodane dla wymogu CRUD) ---
+
 @app.delete("/films/{film_id}")
 def delete_film(film_id: int):
     session = models.SessionLocal()
@@ -90,7 +88,7 @@ def delete_film(film_id: int):
     return {"message": "Film deleted"}
 
 
-# --- UPDATE (Dodane dla wymogu CRUD) ---
+
 class FilmUpdate(BaseModel):
     title: Optional[str] = None
     year: Optional[int] = None
@@ -107,27 +105,27 @@ def update_film(film_id: int, film_update: FilmUpdate):
         session.close()
         raise HTTPException(status_code=404, detail="Film not found")
 
-    # Aktualizacja prostych pól
+   
     if film_update.title:
         film.title = film_update.title
     if film_update.year:
         film.year = film_update.year
 
-    # Aktualizacja relacji (Reżyser)
+   
     if film_update.director:
         director = models.get_or_create(
             session, models.Director, surname=film_update.director
         )
         film.director = director
 
-    # Aktualizacja relacji (Operator)
+   
     if film_update.operator:
         operator = models.get_or_create(
             session, models.Operator, surname=film_update.operator
         )
         film.operator = operator
 
-    # Aktualizacja relacji (Producenci)
+    
     if film_update.producers is not None:
         new_producers = []
         for p_name in film_update.producers:

@@ -6,17 +6,17 @@ def calc_b(i,n,t):
 
 def calculate_bezier_curve(W,w,t,n):
     denominator = 0
-    for i in range(n):
+    for i in range(n+1):
         denominator+=w[i]*calc_b(i,n,t)
     
     x=0
-    for i in range(n):
+    for i in range(n+1):
         x+=w[i]*W[i][0]*calc_b(i,n,t)
         
     x/=denominator
     
     y=0
-    for i in range(n):
+    for i in range(n+1):
         y+=w[i]*W[i][1]*calc_b(i,n,t)
     y/=denominator
 
@@ -41,7 +41,7 @@ W = [(39.5, 10.5), (30, 20), (6, 6), (13, -12), (63, -12.5), (18.5, 17.5), (48, 
 W_x = [p[0] for p in W]
 W_y = [p[1] for p in W]
 w = [2, 2, 3, 2.5, 6, 1.5, 5, 1, 2, 1, 3, 5, 1]
-n = len(W)
+n = len(W)-1
 (res_x,res_y) = ev_bezier(t,n,W,w)
 
 plt.figure(figsize=(8,8))

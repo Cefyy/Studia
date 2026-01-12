@@ -11,7 +11,7 @@ from sqlalchemy.orm import (
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, create_engine, select
 from typing import List
 import os
-import json  # Dodano import json
+import json  
 
 # --- BAZA DANYCH I MODELE ---
 
@@ -83,7 +83,6 @@ def get_or_create(session: Session, model, **kwargs):
         return instance
 
 
-# ZMIANA: Dodano parametr commit=True
 def create_film_in_db(
     session: Session,
     title,
@@ -111,7 +110,7 @@ def create_film_in_db(
     )
     session.add(film)
 
-    # ZMIANA: Commitujemy tylko jeśli flaga jest True
+    
     if commit:
         session.commit()
     return film
@@ -121,7 +120,7 @@ def create_film_in_db(
 
 
 def load_initial_data(session: Session):
-    """Ładuje dane z data.json jeśli tabela Films jest pusta."""
+    
     if session.query(Film).count() > 0:
         return
 
@@ -136,7 +135,7 @@ def load_initial_data(session: Session):
             data = json.load(f)
 
         for item in data:
-            # ZMIANA: Bezpieczne pobieranie roku i konwersja na int
+            
             year_val = item.get("year")
             if year_val:
                 year_val = int(year_val)
@@ -146,14 +145,14 @@ def load_initial_data(session: Session):
             create_film_in_db(
                 session,
                 title=item["title"],
-                year=year_val,  # Przekazujemy None lub liczbę
+                year=year_val,  
                 director_surname=item["director"],
                 operator_surname=item["operator"],
                 producer_names=item.get("producers", []),
                 commit=False,
             )
 
-        # ZMIANA: Zapisujemy wszystko na raz na końcu
+        
         session.commit()
         print(f"Loaded {len(data)} movies successfully.")
 

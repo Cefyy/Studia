@@ -23,7 +23,7 @@ def main():
     parser_list = subparsers.add_parser("list", help="List movies")
     parser_list.add_argument(
         "--search", help="Filter by title or director surname"
-    )  # Nowy argument
+    )  
 
     # Add
     parser_add = subparsers.add_parser("add", help="Add movie")
@@ -33,7 +33,7 @@ def main():
     parser_add.add_argument("--operator", required=True)
     parser_add.add_argument("--producers", help="Comma separated")
 
-    # --- NOWE KOMENDY ---
+
 
     # Delete
     parser_del = subparsers.add_parser("delete", help="Delete movie by ID")
@@ -64,7 +64,7 @@ def main():
 
     # Obsługa komend
     if args.command == "list":
-        movies = repo.list_movies(search_query=args.search)  # Przekazanie argumentu
+        movies = repo.list_movies(search_query=args.search)  
         print_movies(movies)
 
     elif args.command == "add":
