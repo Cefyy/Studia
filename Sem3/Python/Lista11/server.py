@@ -32,14 +32,17 @@ def get_films(search: Optional[str] = None):
     query = session.query(models.Film)
 
     if search:
-        
+        from sqlalchemy import String
         search_pattern = f"%{search}%"
-        query = query.join(models.Director).filter(
+        query = query.join(models.Director).join(models.Operator).outerjoin(models.Film.producers).filter(
             or_(
                 models.Film.title.ilike(search_pattern),
+                models.Film.year.cast(String).ilike(search_pattern),
                 models.Director.surname.ilike(search_pattern),
+                models.Operator.surname.ilike(search_pattern),
+                models.Producer.name.ilike(search_pattern),
             )
-        )
+        ).distinct()
 
     films = query.all()
     results = []
