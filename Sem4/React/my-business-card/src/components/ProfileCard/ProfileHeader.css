@@ -1,0 +1,40 @@
+.profile-header {
+  text-align: center;
+}
+
+.avatar-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: hwb(138 0% 42%);;
+  padding: 4px; 
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid hwb(138 0% 42%);
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+}
+
+.title {
+  font-size: 1rem;
+  color: hwb(138 0% 42%);
+  font-weight: 500;
+  margin: 0 0 6px 0;
+}
+
+.company {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+}

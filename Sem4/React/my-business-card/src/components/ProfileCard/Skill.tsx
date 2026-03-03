@@ -1,3 +1,5 @@
+import './Skill.css';
+
 interface SkillProps {
     skill : string;
 }

@@ -1,3 +1,5 @@
+import './ProfileHeader.css';
+
 interface ProfileHeaderProps {
     avatar: string;
     name: string;

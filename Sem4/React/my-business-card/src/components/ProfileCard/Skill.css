@@ -1,0 +1,16 @@
+.skill {
+  background-color: rgba(36, 29, 133, 0.1); 
+  color: hwb(138 0% 42%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+}
+
+.skill:hover {
+  background-color: rgba(56, 189, 248, 0.2);
+  transform: translateY(-2px);
+}

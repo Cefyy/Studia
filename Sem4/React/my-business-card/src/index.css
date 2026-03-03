@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #070a27; /* Głęboki, elegancki granat */
+  background-color: #070a27;
   color: #f8fafc;
   -webkit-font-smoothing: antialiased;
 }

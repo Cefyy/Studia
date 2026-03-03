@@ -1,3 +1,5 @@
+import './ContactList.css';
+
 interface ContactListProps{
     phone: string
     email: string

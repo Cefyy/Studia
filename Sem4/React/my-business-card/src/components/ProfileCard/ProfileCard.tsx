@@ -1,7 +1,9 @@
 import type {UserProfile} from "../types/user";
 import ProfileHeader from "./ProfileHeader";
 import ContactList from "./ContactList";
-import Skill from "./Skill";
+import AboutSection from "./AboutSection";
+import SkillsList from "./SkillsList";
+import Divider from "./Divider";
 import './ProfileCard.css';
 
 
@@ -21,26 +23,19 @@ export default function ProfileCard({user}: ProfileCardProps)
                 company={user.company}
             />
 
-            <hr className="divider"/>
+            <Divider />
 
             <ContactList
                 phone={user.contact.phone}
                 email={user.contact.email}
                 website={user.contact.website}
             />
-            <hr className="divider"/>
+            
+            <Divider />
 
-            <section className="about-section">
-                <h3> ABOUT ME</h3>
-                <p>{user.about}</p>
-            </section>
+            <AboutSection about={user.about} />
 
-            <section className="skills-section">
-                <h3>SKILLS</h3>
-                <div className="skills-container">
-                    {user.skills.map((skill) => (<Skill key ={skill} skill={skill}/>))}
-                </div>
-            </section>
+            <SkillsList skills={user.skills} />
         </article>
     )
 }
