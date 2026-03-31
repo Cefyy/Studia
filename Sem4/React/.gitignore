@@ -50,3 +50,12 @@ pnpm-debug.log
 .cache/
 .temp/
 tmp/
+
+# Archives and compressed files
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.tar.gz
+*.tar.bz2
