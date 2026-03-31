@@ -1,0 +1,13 @@
+﻿.recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.recipe-list:empty::after {
+  content: 'No recipes found';
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-style: italic;
+}

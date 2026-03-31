@@ -1,0 +1,77 @@
+﻿.recipe-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.recipe-item:hover {
+  border-color: #27ae60;
+  box-shadow: 0 2px 6px rgba(39, 174, 96, 0.15);
+}
+
+.recipe-item.favorite {
+  border-left: 5px solid #f39c12;
+  background: #fffef0;
+}
+
+.recipe-item h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.recipe-item p {
+  margin: 0;
+  color: #666;
+}
+
+.recipe-item-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.recipe-item-actions button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f0f0f0;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.recipe-item-actions button:hover {
+  background: #e8e8e8;
+  border-color: #bbb;
+}
+
+.recipe-item-actions .delete-btn {
+  background: #e74c3c;
+  color: #fff;
+  border-color: #c0392b;
+}
+
+.recipe-item-actions .delete-btn:hover {
+  background: #c0392b;
+  border-color: #a93226;
+}
+
+.recipe-item-actions .favorite-btn {
+  background: #f39c12;
+  color: #fff;
+  border-color: #d68910;
+}
+
+.recipe-item-actions .favorite-btn:hover {
+  background: #d68910;
+  border-color: #b86e0e;
+}
