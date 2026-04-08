@@ -14,6 +14,7 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
+        
         cin >> dane[i];
         total_sum += dane[i];
     }
