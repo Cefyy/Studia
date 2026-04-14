@@ -1,0 +1,15 @@
+﻿.recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recipe-list-empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-style: italic;
+}
