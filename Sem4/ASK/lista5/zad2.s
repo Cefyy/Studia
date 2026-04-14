@@ -17,7 +17,7 @@ overflow:
     ret
 
 
-# wersja z sbb dodajemy x i y w rax, pozniej odejmujemy rax od samego siebie z CF, jesli było przepełnienie to 0-1 = -1 czyli ULONG MAX
+# wersja z sbb dodajemy x i y w rax, pozniej odejmujemy rdx od samego siebie z CF, jesli było przepełnienie to 0-1 = -1 czyli ULONG MAX
 
 oblicz_z_sbb:
     movq %rdi,%rax
