@@ -125,3 +125,11 @@ desktop.ini
 # !package.json
 # !tsconfig.json
 Sem4/ASK/lista5/main.c
+Sem4/AiSD/Pracownie/tools/__init__.py
+Sem4/AiSD/Pracownie/tools/.gitignore
+Sem4/AiSD/Pracownie/tools/checker.py
+Sem4/AiSD/Pracownie/tools/generator.py
+Sem4/AiSD/Pracownie/tools/ram_fail.in
+Sem4/AiSD/Pracownie/tools/README.md
+Sem4/AiSD/Pracownie/tools/stress_test.py
+Sem4/AiSD/Pracownie/zadC/zadC.cpp
