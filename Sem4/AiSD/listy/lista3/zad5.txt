@@ -1,0 +1,68 @@
+Struktura Prosta:
+    a           // współczynnik kierunkowy
+    b           // wyraz wolny
+    x_end       // punkt końcowy widoczności (domyślnie +NIESKOŃCZONOŚĆ)
+
+Funkcja SzukajGórnejObwiedni(Proste):
+    // Krok 1: Wstępne sortowanie całej tablicy (O(n log n))
+    Posortuj(Proste) rosnąco według współczynnika 'a'
+    Zwróć DzielIZwyciężaj(Proste)
+
+
+Funkcja DzielIZwyciężaj(Proste):
+    // Krok bazowy: jedna prosta króluje do nieskończoności
+    Jeśli rozmiar(Proste) == 1:
+        Proste[0].x_end = +NIESKOŃCZONOŚĆ
+        Zwróć Proste
+    
+    // Podział na lewą i prawą połowę
+    Srodek = rozmiar(Proste) / 2
+    Obwiednia_L = DzielIZwyciężaj(Proste[0 ... Srodek-1])
+    Obwiednia_R = DzielIZwyciężaj(Proste[Srodek ... koniec])
+    
+    // Scalanie w czasie liniowym O(n)
+    Zwróć Scalaj(Obwiednia_L, Obwiednia_R)
+
+Funkcja Scalaj(L, R):
+    i = 0  // wskaźnik dla lewej obwiedni
+    j = 0  // wskaźnik dla prawej obwiedni
+    
+    Dopóki i < rozmiar(L) oraz j < rozmiar(R):
+        // 1. Odczytujemy zapisane punkty załamań
+        x_L = L[i].x_end
+        x_R = R[j].x_end
+        
+        // 2. Szukamy "Okna Bezpieczeństwa"
+        x_next = min(x_L, x_R)
+        
+        // 3. Liczymy algebraiczny punkt przecięcia aktualnych prostych
+        // Wzór: x = (b2 - b1) / (a1 - a2)
+        x_cross = (R[j].b - L[i].b) / (L[i].a - R[j].a)
+        
+        // 4. TEST PRZEŁOMU (Czy przecięły się "na powierzchni"?)
+        Jeśli x_cross <= x_next:
+            // BINGO! Znaleźliśmy x_switch. R przebija L.
+            
+            // Ustawiamy nowy punkt końcowy dla uciętej prostej z L
+            L[i].x_end = x_cross
+            
+            NowaObwiednia = PustaLista()
+            
+            // Bierzemy L od początku aż do miejsca przełomu
+            Dodaj wszystkie elementy L[0 ... i] do NowaObwiednia
+            
+            // Bierzemy R od miejsca przełomu aż do samego końca
+            Dodaj wszystkie elementy R[j ... koniec] do NowaObwiednia
+            
+            // Sklejone! Wychodzimy od razu, bez patrzenia dalej.
+            Zwróć NowaObwiednia
+            
+        W przeciwnym razie:
+            // Przecięcie było "pod ziemią". Przesuwamy wskaźnik.
+            Jeśli x_L < x_R:
+                i = i + 1  // Lewa prosta się skończyła, bierzemy następną
+            W przeciwnym razie:
+                j = j + 1  // Prawa prosta się skończyła, bierzemy następną
+
+    // Ze względu na to, że prawa strona zawsze kiedyś przegoni lewą (bo ma większe 'a'),
+    // pętla ZAWSZE znajdzie x_cross i zrobi 'Zwróć', zanim wskaźniki wyjdą poza tablice.
