@@ -1,0 +1,226 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{needspace}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+
+\title{RPiS -- Zadanie 0\\Implementacja dystrybuanty rozkladu $\chi^2$}
+\author{Jakub Grzelak}
+
+\begin{document}
+\maketitle
+
+\section{Tresc zadania}
+Celem zadania jest implementacja dystrybuanty rozkladu chi-kwadrat $\chi^2(k)$
+z wykorzystaniem:
+\begin{itemize}
+  \item wlasnej implementacji funkcji gamma,
+  \item numerycznego calkowania,
+  \item testow porownawczych z referencja.
+\end{itemize}
+
+\section{Podstawy teoretyczne}
+Gestosc rozkladu $\chi^2(k)$ ma postac:
+\begin{equation}
+  f(x;k) = \frac{1}{2^{k/2}\,\Gamma(k/2)}\,x^{k/2-1}e^{-x/2}, \quad x \ge 0.
+\end{equation}
+
+Dystrybuanta:
+\begin{equation}
+  F(x;k) = \int_0^x f(t;k)\,dt.
+\end{equation}
+
+W MATLAB referencja moze byc zapisana jako:
+\begin{equation}
+  F_{\text{ref}}(x;k) = \mathrm{gammainc}(x/2,\,k/2,\,\texttt{'lower'}).
+\end{equation}
+
+\section{Opis implementacji}
+Implementacja sklada sie z pieciu plikow:
+\begin{itemize}
+  \item \texttt{moja\_gamma.m} -- obliczanie $\Gamma(p)$ dla argumentow postaci $k/2$,
+  \item \texttt{gestosc\_chi2.m} -- gestosc rozkladu $\chi^2(k)$,
+  \item \texttt{calka.m} -- calkowanie numeryczne metoda Romberga,
+  \item \texttt{z2.m} -- funkcja glowna zwracajaca dystrybuante,
+  \item \texttt{test\_z2.m} -- testy numeryczne i wykresy porownawcze.
+\end{itemize}
+
+\subsection{Stabilizacja numeryczna}
+Dla malych stopni swobody (np. $k=1$) gestosc ma osobliwosc w zerze.
+Zastosowano podstawienie:
+\begin{equation}
+  t = s^2, \quad dt = 2s\,ds,
+\end{equation}
+co daje:
+\begin{equation}
+  F(x;k) = \int_0^{\sqrt{x}} 2s\,f(s^2;k)\,ds.
+\end{equation}
+To poprawia stabilnosc obliczen przy dolnej granicy calkowania.
+
+\subsection{Metoda Romberga i ekstrapolacja Richardsona}
+W funkcji \texttt{calka.m} zastosowano tablice Romberga. Pierwsza kolumna
+to kolejne przyblizenia metoda trapezow:
+\begin{equation}
+  R_{0,0} = \frac{b-a}{2}\left(f(a)+f(b)\right),
+\end{equation}
+\begin{equation}
+  R_{m,0} = \frac{1}{2}R_{m-1,0} + h_m\sum_{i=1}^{2^{m-1}} f\!\left(a + (2i-1)h_m\right),
+  \quad h_m = \frac{b-a}{2^m}, \quad m \ge 1.
+\end{equation}
+
+Nastepnie wykonywana jest ekstrapolacja Richardsona po kolumnach:
+\begin{equation}
+  R_{m,j} = R_{m,j-1} + \frac{R_{m,j-1}-R_{m-1,j-1}}{4^j-1},
+  \quad j=1,\dots,m.
+\end{equation}
+
+Przyblizenie koncowe po $m$ krokach ma postac:
+\begin{equation}
+  I \approx R_{m,m}.
+\end{equation}
+
+W implementacji przyjeto parametry:
+\begin{equation}
+  m_{\max}=12, \qquad \texttt{tol}=10^{-10},
+\end{equation}
+oraz warunek stopu oparty na diagonalnych elementach tablicy:
+\begin{equation}
+  \left|R_{m,m}-R_{m-1,m-1}\right| < \texttt{tol}\cdot\max\left(1,\left|R_{m,m}\right|\right).
+\end{equation}
+
+\subsection{Szczegoly implementacyjne (zgodne z kodem)}
+W raporcie ujete sa takze decyzje stricte numeryczne z implementacji:
+\begin{itemize}
+  \item W \texttt{calka.m} zastosowano tablice Romberga i ekstrapolacje Richardsona
+  (do poziomu $m_{\max}=12$).
+  \item Przy bezposrednim wywolaniu \texttt{z2} bez argumentow
+  (np. uruchomienie \texttt{z2.m} bez skryptu testowego) funkcja liczy wartosc
+  dla domyslnych parametrow $x=0.5$ oraz $k=5$.
+  \item Dla przypadku $b<a$ calka jest liczona jako
+  $\int_a^b f(x)dx = -\int_b^a f(x)dx$.
+  \item Jesli wartosc funkcji w punkcie probkowania jest nieoznaczona
+  (\texttt{Inf}/\texttt{NaN}), punkt jest przesuwany o maly krok
+  $\varepsilon = \max(h\cdot10^{-6},\,\mathrm{eps}(1+|x|))$ i ponawiana jest ewaluacja.
+  \item W \texttt{z2.m}: dla $x \le 0$ zwracane jest $F(x)=0$,
+  a parametr $k$ musi byc dodatnia liczba calkowita.
+  \item Po obliczeniu stosowane jest ograniczenie numeryczne wyniku do przedzialu
+  $[0,1]$ (operacja \texttt{max(0,min(1,F))}).
+  \item W \texttt{gestosc\_chi2.m}: dla $x<0$ zwracane jest $f(x)=0$.
+  \item W \texttt{moja\_gamma.m} wykorzystano rekurencje
+  $\Gamma(p)=(p-1)\Gamma(p-1)$ z warunkami bazowymi
+  $\Gamma(1)=1$ oraz $\Gamma(1/2)=\sqrt{\pi}$.
+\end{itemize}
+
+\section{Testowanie}
+Skrypt \texttt{test\_z2.m} wykonuje:
+\begin{itemize}
+  \item testy punktowe: porownanie $z2(x,k)$ z referencja,
+  \item test monotonicznosci: sprawdzenie, czy $F$ jest niemalejaca,
+  \item test zakresu: sprawdzenie, czy $0 \le F(x) \le 1$,
+  \item wykresy: porownanie krzywych i blad bezwzgledny.
+\end{itemize}
+
+Przyklad metryk raportowanych przez test:
+\begin{itemize}
+  \item liczba zaliczonych testow punktowych,
+  \item maksymalny blad bezwzgledny
+  $\max |F_{\text{num}} - F_{\text{ref}}|$.
+\end{itemize}
+
+\section{Wyniki i wnioski}
+\subsection*{Podsumowanie testow}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Metryka & Wynik \\
+    \midrule
+    Zaliczone testy punktowe & $24/24$ \\
+    Maksymalny blad bezwzgledny & $1.786 \cdot 10^{-13}$ \\
+    Test monotonicznosci & OK \\
+    Test zakresu $[0,1]$ & OK \\
+    \bottomrule
+  \end{tabular}
+  \caption{Zbiorcze wyniki testow funkcji \texttt{z2}.}
+\end{table}
+
+\Needspace{10\baselineskip}
+\subsection*{Pelne wyniki punktowe (z bledem)}
+\begin{longtable}{rrrrr}
+  \caption{Pelne porownanie wynikow \texttt{z2(x,k)} z referencja MATLAB.}\\
+  \toprule
+  $k$ & $x$ & $z2(x,k)$ & Referencja & $|\text{blad}|$ \\
+  \midrule
+  \endfirsthead
+
+  \toprule
+  $k$ & $x$ & $z2(x,k)$ & Referencja & $|\text{blad}|$ \\
+  \midrule
+  \endhead
+
+  \bottomrule
+  \endfoot
+
+  1 & 0.00  & 0.00000000 & 0.00000000 & $0.000\cdot10^{0}$ \\
+  1 & 0.20  & 0.34527915 & 0.34527915 & $2.276\cdot10^{-15}$ \\
+  1 & 1.00  & 0.68268949 & 0.68268949 & $4.441\cdot10^{-15}$ \\
+  1 & 3.00  & 0.91673548 & 0.91673548 & $9.215\cdot10^{-15}$ \\
+  1 & 8.00  & 0.99532227 & 0.99532227 & $1.786\cdot10^{-13}$ \\
+  1 & 15.00 & 0.99989249 & 0.99989249 & $5.107\cdot10^{-14}$ \\
+
+  2 & 0.00  & 0.00000000 & 0.00000000 & $0.000\cdot10^{0}$ \\
+  2 & 0.20  & 0.09516258 & 0.09516258 & $5.773\cdot10^{-15}$ \\
+  2 & 1.00  & 0.39346934 & 0.39346934 & $1.471\cdot10^{-14}$ \\
+  2 & 3.00  & 0.77686984 & 0.77686984 & $6.661\cdot10^{-16}$ \\
+  2 & 8.00  & 0.98168436 & 0.98168436 & $1.110\cdot10^{-16}$ \\
+  2 & 15.00 & 0.99944692 & 0.99944692 & $1.121\cdot10^{-14}$ \\
+
+  5 & 0.00  & 0.00000000 & 0.00000000 & $0.000\cdot10^{0}$ \\
+  5 & 0.20  & 0.00088614 & 0.00088614 & $2.168\cdot10^{-18}$ \\
+  5 & 1.00  & 0.03743423 & 0.03743423 & $1.388\cdot10^{-17}$ \\
+  5 & 3.00  & 0.30001416 & 0.30001416 & $1.110\cdot10^{-16}$ \\
+  5 & 8.00  & 0.84376437 & 0.84376437 & $4.108\cdot10^{-15}$ \\
+  5 & 15.00 & 0.98963766 & 0.98963766 & $3.331\cdot10^{-16}$ \\
+
+  10 & 0.00  & 0.00000000 & 0.00000000 & $0.000\cdot10^{0}$ \\
+  10 & 0.20  & 0.00000008 & 0.00000008 & $2.179\cdot10^{-14}$ \\
+  10 & 1.00  & 0.00017212 & 0.00017212 & $1.516\cdot10^{-14}$ \\
+  10 & 3.00  & 0.01857594 & 0.01857594 & $6.939\cdot10^{-18}$ \\
+  10 & 8.00  & 0.37116306 & 0.37116306 & $7.938\cdot10^{-15}$ \\
+  10 & 15.00 & 0.86793814 & 0.86793814 & $1.044\cdot10^{-13}$ \\
+\end{longtable}
+
+
+\subsection*{Wnioski}
+\begin{itemize}
+  \item Implementacja poprawnie aproksymuje dystrybuante $\chi^2(k)$.
+  \item Wszystkie testy punktowe zostaly zaliczone ($24/24$).
+  \item Maksymalny blad bezwzgledny jest bardzo maly: $1.786 \cdot 10^{-13}$.
+  \item Spelnione sa podstawowe wlasnosci dystrybuanty: monotonicznosc oraz zakres $[0,1]$.
+\end{itemize}
+
+\noindent\textbf{Podsumowanie:} Otrzymane wyniki potwierdzaja poprawne dzialanie implementacji i jej zgodnosc z referencja MATLAB.
+
+\Needspace{0.7\textheight}
+\section{Wykres}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{wykres.png}
+  \caption{Porownanie dystrybuanty oraz blad bezwzgledny.}
+\end{figure}
+
+\end{document}
