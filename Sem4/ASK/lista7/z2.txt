@@ -1,31 +1,30 @@
 a)
 Wersja bez zamian kolejnosci:
 
-1 mov (%rax), %rdi
+1 mov (%rax), %rdi       
 nop
-nop                         mov wykona sie w MEM, a add musi juz w ID odczytać rejest, wiec musimy ustawić ID z add pod WB z mova
-2 add %rdi, %rsi
+nop              
+2 add %rdi, %rsi    # Czeka 2 cykle na %rdi z instrukcji 1
 3 imul %rcx, %rax, %rdi
+nop                 4 linia potrzebuje rsi i ma 2 przerwy wstawiamy nopa i 3 linia daje nam drugie
 4 mov %rsi, (%rcx)
-ID anda musi być pod WB imul ponieważ uzywają rdi, 4 stanowi jedno naturalne przesuniecie wiec wystarczy jeszcze tylko jedno
-nop
-5 and %rcx, %rdi
+5 and %rcx, %rdi     5 linia potrzebuje rdi z trzeciej ale poprzedni nop i sama 4 linia wyrównują
 6 mov %rcx, %rdi
 
 ilosc nopów: 3
 
 Wersja ze zmianami:
 
+//mozemy miec dwie osobne linie 1-2-4 i 3-5
 1 mov (%rax), %rdi
+3 imul %rcx, %rax, %r8 odciazamy rdi i uzywamy wolnego rejestru r8 by jednoczesnie wstawic opoznienie i uratowac jednego nopa i odciazyc rdi
+nop
 2 add %rdi, %rsi
-3 imul %rcx, %rax, %rdi
-4 mov %rsi, (%rcx)
+5 and %rcx, %r8  // teraz juz mozemy uzyc 5 linii z r8 która ma wyrównane dwa opoznienia 
+6 mov %rcx, %rdi //rcx jest gotowe i mozemy bezpiecznie nadpisac rdi i jednoczesnie tracimy nopa pomiedzy 2-4
+4 mov %rsi, (%rcx) //rsi juz jest dostepne
 
-5 and %rcx, %rdi
-
-6 mov %rcx, %rdi
-nic tu nie zrobimy bo kazda instrukcja potrzebuje poprzedniej wiec nie wykorzystamy innych rejestrów ani nie zamienimy miejscami
-ilosc nopów: 3
+ilosc nopów: 1
 
 b)
 Wersja bez zamian kolejnosci:
