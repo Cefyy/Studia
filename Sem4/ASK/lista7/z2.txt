@@ -1,0 +1,63 @@
+a)
+Wersja bez zamian kolejnosci:
+
+1 mov (%rax), %rdi
+nop
+nop                         mov wykona sie w MEM, a add musi juz w ID odczytać rejest, wiec musimy ustawić ID z add pod WB z mova
+2 add %rdi, %rsi
+3 imul %rcx, %rax, %rdi
+4 mov %rsi, (%rcx)
+ID anda musi być pod WB imul ponieważ uzywają rdi, 4 stanowi jedno naturalne przesuniecie wiec wystarczy jeszcze tylko jedno
+nop
+5 and %rcx, %rdi
+6 mov %rcx, %rdi
+
+ilosc nopów: 3
+
+Wersja ze zmianami:
+
+1 mov (%rax), %rdi
+2 add %rdi, %rsi
+3 imul %rcx, %rax, %rdi
+4 mov %rsi, (%rcx)
+
+5 and %rcx, %rdi
+
+6 mov %rcx, %rdi
+nic tu nie zrobimy bo kazda instrukcja potrzebuje poprzedniej wiec nie wykorzystamy innych rejestrów ani nie zamienimy miejscami
+ilosc nopów: 3
+
+b)
+Wersja bez zamian kolejnosci:
+
+1 add %rcx, %rdi
+2 mov %rdi, (%rsi)
+3 mov 8(%rsi), %rdi
+nop
+nop                       add musi odczytać rdi wiec potrzebujemy dwóch nopów by zrównąć WB mova z ID adda
+4 add %rdi, %rcx
+5 mov %rdi, 16(%rsi)
+nop                     mov musi odczytać wartosc w ID ale add musi zdazyc ją zapisać w WB 5 linia tworzy naturalne przesuniecie
+6 mov %rcx, %rdi
+
+ilosc nopów: 3
+
+Wersja ze zmianami:
+
+3 mov 8(%rsi), %r8
+1 add %rcx, %rdi
+2 mov %rdi, (%rsi)
+4 add %r8, %rcx     teraz mamy dwa przesuniecia juz pomiedzy trzecią a 4 linią i używamy r8 by je oderwać od reszty
+5 mov %rdi, 16(%rsi)
+nop                 tutaj nop zostaje
+6 mov %rcx, %rdi
+
+ilosc nopów: 1
+
+
+
+IF: Instruction Fetch  pobranie instrukcji z pami¦ci
+2. ID: Instruction Decode  pobranie warto±ci z rejestrów
+3. EX: Execute  wykonanie operacji arytmetyczno-logicznych
+4. MEM: Memory access  odczyty z/zapisy do pami¦ci
+5. WB: Write Back  zapis warto±ci do rejestrów

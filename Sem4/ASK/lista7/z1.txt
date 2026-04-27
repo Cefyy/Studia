@@ -1,0 +1,4 @@
+Cykl trwa 600 poniewaz kazda operacja musi sie zmiescic w jednym ticku zegara
+Jesli rozbijemy MEM na 200 to wtedy najdłuzsza operacja trwa 300, wiec cykl 300
+
+w drugim przypadku 200 jak rozbijemy IF na 2 to wtedy 190 bo najdluzszy jest MEM
