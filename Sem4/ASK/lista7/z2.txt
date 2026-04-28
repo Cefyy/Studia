@@ -6,9 +6,10 @@ nop
 nop                         mov wykona sie w MEM, a add musi juz w ID odczytać rejest, wiec musimy ustawić ID z add pod WB z mova
 2 add %rdi, %rsi
 3 imul %rcx, %rax, %rdi
+nop
 4 mov %rsi, (%rcx)
 ID anda musi być pod WB imul ponieważ uzywają rdi, 4 stanowi jedno naturalne przesuniecie wiec wystarczy jeszcze tylko jedno
-nop
+
 5 and %rcx, %rdi
 6 mov %rcx, %rdi
 
@@ -20,8 +21,8 @@ Wersja ze zmianami:
 3 imul %rcx, %rax, %r8
 nop
 2 add %rdi, %rsi
-6 mov %rcx, %rdi
 5 and %rcx, %r8
+6 mov %rcx, %r8
 4 mov %rsi, (%rcx)
 
 ilosc nopów: 1
