@@ -31,6 +31,8 @@ b)
 Wersja bez zamian kolejnosci:
 
 1 add %rcx, %rdi
+nop
+nop
 2 mov %rdi, (%rsi)
 3 mov 8(%rsi), %rdi
 nop
@@ -40,16 +42,17 @@ nop                       add musi odczytać rdi wiec potrzebujemy dwóch nopów
 nop                     mov musi odczytać wartosc w ID ale add musi zdazyc ją zapisać w WB 5 linia tworzy naturalne przesuniecie
 6 mov %rcx, %rdi
 
-ilosc nopów: 3
+ilosc nopów: 5
 
 Wersja ze zmianami:
 
 3 mov 8(%rsi), %r8
 1 add %rcx, %rdi
-2 mov %rdi, (%rsi)
-4 add %r8, %rcx     teraz mamy dwa przesuniecia juz pomiedzy trzecią a 4 linią i używamy r8 by je oderwać od reszty
-5 mov %rdi, 16(%rsi)
-nop                 tutaj nop zostaje
+nop
+4 add r8 rcx
+2 mov %rdi, (%rsi)     teraz mamy dwa przesuniecia juz pomiedzy trzecią a 4 linią i używamy r8 by je oderwać od reszty
+5 mov %r8, 16(%rsi)
+tutaj nop zostaje
 6 mov %rcx, %rdi
 
 ilosc nopów: 1
