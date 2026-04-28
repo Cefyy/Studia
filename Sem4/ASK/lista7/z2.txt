@@ -17,15 +17,14 @@ ilosc nopów: 3
 Wersja ze zmianami:
 
 1 mov (%rax), %rdi
+3 imul %rcx, %rax, %r8
+nop
 2 add %rdi, %rsi
-3 imul %rcx, %rax, %rdi
+6 mov %rcx, %rdi
+5 and %rcx, %r8
 4 mov %rsi, (%rcx)
 
-5 and %rcx, %rdi
-
-6 mov %rcx, %rdi
-nic tu nie zrobimy bo kazda instrukcja potrzebuje poprzedniej wiec nie wykorzystamy innych rejestrów ani nie zamienimy miejscami
-ilosc nopów: 3
+ilosc nopów: 1
 
 b)
 Wersja bez zamian kolejnosci:
