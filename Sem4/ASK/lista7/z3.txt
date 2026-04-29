@@ -1,0 +1,27 @@
+imulq   24(%rdi), %rsi
+
+leaq    (%rsi,%rsi,4), %rax
+
+leaq    (%rsi,%rax,2), %rax
+
+to jest obliczenie f
+
+(%rdi,%rax,8), %rdx 
+to jest obliczenie b
+
+addq    $4, %rdx
+
+movq    %rdx, (%rcx)
+
+to jest b+4 i zapisanie w *jp
+
+
+imulq 24(%rdi), %rsi to jest oczyt(+5) i mnozenie (+3) oraz zapis (+5)
+leaq    (%rsi,%rsi,4), %rax (dwa odczyty +10) (dodawanie i mnozenie +4) zapis +5
+leaq    (%rsi,%rax,2), %rax (to samo)
+(%rdi,%rax,8), %rdx (dwa odczyty +10) (dodawanie i mnozenie +4) zapis +5
+addq    $4, %rdx (+1 add) zapis + 5
+movq    %rdx, (%rcx) (odczyt +5 zapis +5)
+
+
+

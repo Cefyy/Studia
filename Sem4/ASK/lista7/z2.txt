@@ -6,9 +6,10 @@ nop
 nop              
 2 add %rdi, %rsi    # Czeka 2 cykle na %rdi z instrukcji 1
 3 imul %rcx, %rax, %rdi
-nop                 4 linia potrzebuje rsi i ma 2 przerwy wstawiamy nopa i 3 linia daje nam drugie
 4 mov %rsi, (%rcx)
-5 and %rcx, %rdi     5 linia potrzebuje rdi z trzeciej ale poprzedni nop i sama 4 linia wyrównują
+ID anda musi być pod WB imul ponieważ uzywają rdi, 4 stanowi jedno naturalne przesuniecie wiec wystarczy jeszcze tylko jedno
+nop
+5 and %rcx, %rdi
 6 mov %rcx, %rdi
 
 ilosc nopów: 3
@@ -17,19 +18,22 @@ Wersja ze zmianami:
 
 //mozemy miec dwie osobne linie 1-2-4 i 3-5
 1 mov (%rax), %rdi
-3 imul %rcx, %rax, %r8 odciazamy rdi i uzywamy wolnego rejestru r8 by jednoczesnie wstawic opoznienie i uratowac jednego nopa i odciazyc rdi
-nop
 2 add %rdi, %rsi
-5 and %rcx, %r8  // teraz juz mozemy uzyc 5 linii z r8 która ma wyrównane dwa opoznienia 
-6 mov %rcx, %rdi //rcx jest gotowe i mozemy bezpiecznie nadpisac rdi i jednoczesnie tracimy nopa pomiedzy 2-4
-4 mov %rsi, (%rcx) //rsi juz jest dostepne
+3 imul %rcx, %rax, %rdi
+4 mov %rsi, (%rcx)
 
-ilosc nopów: 1
+5 and %rcx, %rdi
+
+6 mov %rcx, %rdi
+nic tu nie zrobimy bo kazda instrukcja potrzebuje poprzedniej wiec nie wykorzystamy innych rejestrów ani nie zamienimy miejscami
+ilosc nopów: 3
 
 b)
 Wersja bez zamian kolejnosci:
 
 1 add %rcx, %rdi
+nop
+nop
 2 mov %rdi, (%rsi)
 3 mov 8(%rsi), %rdi
 nop
@@ -39,16 +43,17 @@ nop                       add musi odczytać rdi wiec potrzebujemy dwóch nopów
 nop                     mov musi odczytać wartosc w ID ale add musi zdazyc ją zapisać w WB 5 linia tworzy naturalne przesuniecie
 6 mov %rcx, %rdi
 
-ilosc nopów: 3
+ilosc nopów: 5
 
 Wersja ze zmianami:
 
 3 mov 8(%rsi), %r8
 1 add %rcx, %rdi
-2 mov %rdi, (%rsi)
-4 add %r8, %rcx     teraz mamy dwa przesuniecia juz pomiedzy trzecią a 4 linią i używamy r8 by je oderwać od reszty
-5 mov %rdi, 16(%rsi)
-nop                 tutaj nop zostaje
+nop
+4 add r8 rcx
+2 mov %rdi, (%rsi)     teraz mamy dwa przesuniecia juz pomiedzy trzecią a 4 linią i używamy r8 by je oderwać od reszty
+5 mov %r8, 16(%rsi)
+tutaj nop zostaje
 6 mov %rcx, %rdi
 
 ilosc nopów: 1
