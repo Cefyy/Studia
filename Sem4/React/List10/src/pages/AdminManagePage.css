@@ -1,0 +1,28 @@
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table th, .admin-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+.admin-table th {
+  background: #f4f4f4;
+}
+.edit-link {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #007bff;
+}
+.delete-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.delete-btn:hover {
+  background: #cc0000;
+}

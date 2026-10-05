@@ -1,0 +1,23 @@
+.todo-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+}
+
+.error {
+  color: red;
+}
+
+.fetching-indicator {
+  color: gray;
+  font-style: italic;
+}

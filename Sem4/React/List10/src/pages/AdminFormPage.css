@@ -1,0 +1,30 @@
+.admin-form-container {
+  max-width: 400px;
+}
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+.admin-form input, .admin-form textarea {
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.admin-form button {
+  padding: 0.75rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.admin-form button:hover {
+  background: #0056b3;
+}

@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Struktura reprezentująca pojedynczy węzeł w drzewie
+struct Node {
+    int dlugosc = 0; // Maksymalna długość podciągu
+    int sposoby = 0; // Liczba sposobów na osiągnięcie tej długości
+};
+
+// Funkcja łącząca dwa węzły (nasza magia wyłaniania zwycięzcy i sumowania dróg)
+Node merge_nodes(Node left, Node right) {
+    if (left.dlugosc > right.dlugosc) return left;
+    if (right.dlugosc > left.dlugosc) return right;
+    
+    // Remis - długości są równe. 
+    // Zwracamy tę samą długość, ale SUMUJEMY sposoby.
+    // (Jeśli oba mają długość 0, sposoby też będą 0).
+    return {left.dlugosc, left.sposoby + right.sposoby};
+}
+
+// Globalna tablica reprezentująca nasze drzewo przedziałowe
+// (Rozmiar zazwyczaj ustawia się na 4 * maksymalna_wartosc)
+const int MAX_VAL = 100005; // Przykład dla skompresowanych współrzędnych
+Node tree[4 * MAX_VAL];
+
+
+Node query(int v, int tl, int tr, int l, int r) {
+    // Przypadek 1: Przedziały się minęły - zwracamy puste zera
+    if (l > r) {
+        return {0, 0};
+    }
+    
+    // Przypadek 2: Aktualny węzeł idealnie pokrywa się z zapytaniem
+    if (l == tl && r == tr) {
+        return tree[v];
+    }
+    
+    // Przypadek 3: Jesteśmy gdzieś pośrodku, dzielimy zapytanie na dwóch synów
+    int tm = (tl + tr) / 2;
+    Node wynik_z_lewej = query(v * 2, tl, tm, l, min(r, tm));
+    Node wynik_z_prawej = query(v * 2 + 1, tm + 1, tr, max(l, tm + 1), r);
+    
+    return merge_nodes(wynik_z_lewej, wynik_z_prawej);
+}
+
+
+void update(int v, int tl, int tr, int pos, Node nowa_wartosc) {
+    // Dotarliśmy do samego dołu - do docelowego liścia
+    if (tl == tr) {
+        // Tu musimy być ostrożni! Może tu już być zapisany jakiś inny odcinek kończący
+        // się w tym samym punkcie. Łączymy nową wartość ze starą zawartością liścia.
+        if (nowa_wartosc.dlugosc > tree[v].dlugosc) {
+            tree[v] = nowa_wartosc; // Całkowicie nadpisujemy
+        } else if (nowa_wartosc.dlugosc == tree[v].dlugosc) {
+            tree[v].sposoby += nowa_wartosc.sposoby; // Doklejamy nowe drogi
+        }
+        return;
+    }
+    
+    // Schodzimy w dół drzewa, w odpowiednią stronę (w lewo albo w prawo)
+    int tm = (tl + tr) / 2;
+    if (pos <= tm) {
+        update(v * 2, tl, tm, pos, nowa_wartosc);
+    } else {
+        update(v * 2 + 1, tm + 1, tr, pos, nowa_wartosc);
+    }
+    
+    // Wracając z dołu, aktualizujemy ojca na podstawie synów
+    tree[v] = merge_nodes(tree[v * 2], tree[v * 2 + 1]);
+}
