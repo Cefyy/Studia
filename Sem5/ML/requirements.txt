@@ -1,0 +1,20 @@
+# Jupyter notebook runtime
+jupyterlab
+ipykernel
+ipywidgets
+
+# Data analysis and visualization
+numpy
+pandas
+polars
+matplotlib
+seaborn
+plotly
+pyarrow
+# Scientific computing and machine learning
+scipy
+scikit-learn
+numba
+
+# Datasets used in Lista1
+ucimlrepo
