@@ -1,19 +1,18 @@
 
-fn compliment(dna: &str) -> String
+fn bit_cnt(n : i64) -> u32
 {
-    let mut new_dna =  String::new();
-    for c in dna.chars()
+    let mut mut_n  =n as u64;
+    let mut one_cnt:u64  = 0;
+    while mut_n>0
     {
-        match c
-        {
-            'A' => new_dna.push('T'),
-            'T' => new_dna.push('A'),
-            'G' => new_dna.push('C'),
-            'C' => new_dna.push( 'G'),
-            _ => new_dna.push(' ')
-        }
-    };
-    new_dna
+        one_cnt += mut_n%2;
+        mut_n/=2;
+    }
+
+
+    one_cnt as u32
+
+    
 }
 fn main()
 {
@@ -25,32 +24,29 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_red_area1()
+    fn test_sum_two_smallest_numbers1()
     {
-        assert_eq!(compliment("AAA"),"TTT");
+        assert_eq!(bit_cnt(0),0);
     }
     #[test]
-    fn test_red_area2()
+    fn test_sum_two_smallest_numbers2()
     {
-        assert_eq!(compliment("TTT"),"AAA");
-
+        assert_eq!(bit_cnt(7),3);
     }
     #[test]
-    fn test_red_area3()
+    fn test_sum_two_smallest_numbers3()
     {
-        assert_eq!(compliment("CCCC"),"GGGG");
-
+        assert_eq!(bit_cnt(89),4);    
     }
     #[test]
-    fn test_red_area4()
+    fn test_sum_two_smallest_numbers4()
     {
-        assert_eq!(compliment("GGGG"),"CCCC");
-
+        assert_eq!(bit_cnt(i64::MAX),63);
     }
     #[test]
-    fn test_red_area5()
+    fn test_sum_two_smallest_numbers5()
     {
-        assert_eq!(compliment("ATGC"),"TACG");
+        assert_eq!(bit_cnt(31),5);
 
     }
 }
